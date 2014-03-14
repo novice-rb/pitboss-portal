@@ -1,0 +1,261 @@
+﻿/* Has no background. Used to display text outside of a table */
+.titlemsg {FONT-WEIGHT: bold; FONT-SIZE: 10pt; COLOR: #efefef; FONT-FAMILY: Verdana, Arial, Helvetica}
+
+/*****************************/
+/******** MAIN LAYOUT ********/
+/*****************************/
+body {margin: 0; padding: 0; background-color:#243954; height:100%}
+html {height:100%;}
+.maintable {height:100%;}
+.maincontent {background-color: #243954;}
+/* The admin-only footer at the bottom of each page. Shows some debug info */
+.pagefooter {background-color: #6487DC; color: #ffffcc; font-family: Verdana; margin: 0px 7px 0px 7px; font-size: 62.5%; line-height: 22px;}
+/* The header at the top of the page. Includes the buttons for managing your account */
+.pageheader {font-weight: normal; background-color: #58677c; color: #ffffcc; font-family: Arial, Helvetica, sans-serif; margin: 0px 7px 0px 7px; padding-right: 7px; line-height: 22px;}
+A.pageheader {font-weight: bold; background-color: #58677c; color: #f4d01e; font-family: Arial, Helvetica, sans-serif; margin: 0px 4px 0px 4px; padding-right: 0px; line-height: 22px; text-decoration: none;}
+A.pageheader:hover {font-weight: bold; background-color: #58677c; color: white; font-family: Arial, Helvetica, sans-serif; line-height: 22px;}
+/* The left side of the header that shows the time, and the link to change your timezone */
+.headertime {font-weight: normal; font-size:12px; background-color: #58677c; color: #ffffcc; font-family: Arial, Helvetica, sans-serif; margin: 0px 7px 0px 7px; line-height: 22px; padding-left:10px;}
+A.headertime {font-weight: bold; font-size:10px; background-color: #58677c; color: #f4d01e; font-family: Arial, Helvetica, sans-serif; margin: 0px 4px 0px 4px; line-height: 22px; text-decoration: none; padding-left:0}
+A.headertime:hover {font-weight: bold; font-size:10px; background-color: #58677c; color: white; font-family: Arial, Helvetica, sans-serif; line-height: 22px;}
+
+/*****************************/
+/******** TABLE STYLES *******/
+/*****************************/
+/* Puts a box around a table for extra emphasis */
+TABLE.box {BORDER-RIGHT: #5d6c81 1px solid; BORDER-TOP: #5d6c81 1px solid; BORDER-LEFT: #5d6c81 1px solid; BORDER-BOTTOM: #5d6c81 1px solid}
+/* Same, but a darker box */
+TABLE.darkbox {BORDER-RIGHT: #2c323a 1px solid; BORDER-TOP: #2c323a 1px solid; BORDER-LEFT: #2c323a 1px solid; BORDER-BOTTOM: #2c323a 1px solid}
+
+/*****************************/
+/*********** BANNERS *********/
+/*****************************/
+/* A bar for showing reminders like to register your leader */
+.reminderbar {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #253C89; COLOR: #ffffcc; FONT-FAMILY: Arial, Helvetica, Sans-serif}
+A.reminderbar {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #253C89; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration:none}
+A.reminderbar:hover {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #253C89; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration:underline}
+/* A bar for showing warnings like the uploader being turned off, or sending a message to an AI */
+.warningbar {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #cc0000; COLOR: #ffffcc; FONT-FAMILY: Arial, Helvetica, Sans-serif}
+A.warningbar {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #cc0000; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration: none}
+A.warningbar:hover {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #cc0000; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration:underline}
+/* A bar at the top of almost every page */
+.headingbar {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #ffffcc; FONT-FAMILY: Arial, Helvetica, Sans-serif}
+A.headingbar {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration: none}
+A.headingbar:hover {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration:underline}
+/* A slightly smaller version of the top bar, used on the year details page to go back and forward through turns */
+.smheadingbar {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #ffffcc; FONT-FAMILY: Arial, Helvetica, Sans-serif}
+A.smheadingbar {FONT-WEIGHT: bold; FONT-SIZE: 11pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration: none}
+A.smheadingbar:hover {FONT-WEIGHT: bold; FONT-SIZE: 11pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration:underline}
+
+/*****************************/
+/******* MAIN TABLES *********/
+/*****************************/
+/* The top row of most tables */
+.heading {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #ffffcc; FONT-FAMILY: Arial, Helvetica, Sans-serif}
+A.heading {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration: none}
+A.heading:hover {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration:underline}
+/* Column headers for most tables */
+.smheading {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #58677c; COLOR: #f7fbff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.smheading {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.smheading:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #58677c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline}
+
+/* Standard grey cell. Used for most "data" */
+.grey {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.grey {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.grey:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline}
+/* "Large" grey cell. A little darker than a grey cell, and with bold text */
+.lggrey {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.lggrey {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.lggrey:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+/* Dark cell. Used in columns where the main data is, such as the player name */
+.dark {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #2e3038; COLOR: #dfdfdf; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.dark {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #2e3038; COLOR: #fdd932; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.dark:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #2e3038; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline}
+
+/* Info table title. Used in tables where a bunch of individual statistics are shown together. This is the darker cell to the left of the data. */
+.infotitle {FONT-WEIGHT: bold; text-align:center; FONT-SIZE: 8pt; BACKGROUND: #2e3038; COLOR: #dfdfdf; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.infotitle {FONT-WEIGHT: bold; text-align:center; FONT-SIZE: 8pt; BACKGROUND: #2e3038; COLOR: #fdd932; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.infotitle:hover {FONT-WEIGHT: bold; text-align:center; FONT-SIZE: 8pt; BACKGROUND: #2e3038; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline}
+/* Info table content. This is where the info goes. */
+.info {FONT-WEIGHT: normal; text-align:center;  FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.info {FONT-WEIGHT: bold; text-align:center;  FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.info:hover {FONT-WEIGHT: bold; text-align:center;  FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline}
+
+/*****************************/
+/******** MISC CELLS *********/
+/*****************************/
+/* The cell that holds the body of any "confirmation" box. This is for when you send a message successfully, log in/out, register etc. */
+.confirmationbody {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica; padding-top:20px; padding-bottom:20px; padding-left:20px; padding-right:20px;}
+A.confirmationbody {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.confirmationbody:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+/* These two styles are for the little box that tells you what your gameid is during the add a new game steps */
+.gameidheading {font-weight:bold; font-size:large; background:#58677c;}
+.gameid {font-weight:bold; font-size:xx-large; background-color:#FFFFFF; color:#000000; font-family:"Courier New", Courier, mono}
+/* Used in the "victory" box that appears in games that are finished. */
+.victorybody {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.victorytype {FONT-WEIGHT: bold; FONT-SIZE: 24pt; BACKGROUND: #485464; COLOR: #ffffcc; FONT-FAMILY: Verdana, Arial, Helvetica}
+
+/*****************************/
+/*********** FORMS ***********/
+/*****************************/
+/* The cell that holds most forms, like user registration, log in, account settings, new game, etc. */
+.formcell {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica; padding-left:20px; padding-right:20px; padding-top:20px; padding-bottom:20px;}
+A.formcell {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica; padding: 0px 0px 0px 0px}
+A.formcell:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+/* Used for any cells inside the formcell that don't need the large margins */
+.formsubcell {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.formsubcell {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.formsubcell:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+/* Used for the text labels for each input field. */
+.formlabel {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.formlabel {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.formlabel:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+/* The actual input fields in a form */
+input.formfield {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+select.formfield {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+/* Different kinds of buttons */
+input.buttonbold {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #2e3038; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+input.buttonnormal {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #2e3038; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+
+/*****************************/
+/***** DIPLOMACY CENTER ******/
+/*****************************/
+/* The cell that the leader picture is in. */
+.leaderpicture {BACKGROUND: #58677c; COLOR: #f7fbff;}
+/* The links at the bottom when reading/writing a diplomatic message */
+.diplomacyoptions {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.diplomacyoptions {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #6c6c6c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.diplomacyoptions:hover {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline}
+/* The text area for reading a message */
+.diplomacymessage {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+/* The text area for writing a message */
+input.diplomacymessage {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+
+/*****************************/
+/*********** NEWS ************/
+/*****************************/
+/* The main header that says "CivStats News" */
+.newsmainheading {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #ffffcc; FONT-FAMILY: Arial, Helvetica, Sans-serif}
+A.newsmainheading {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration: none}
+A.newsmainheading:hover {FONT-WEIGHT: bold; FONT-SIZE: 12pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Arial, Helvetica, Sans-serif; text-decoration:underline}
+/* The header for each new day */
+.newsdateheading {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #58677c; COLOR: #f7fbff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none; padding: 0px 0px 0px 0px; margin-bottom: 4px; margin-top: 4px}
+A.newsdateheading {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none; padding: 0px 0px 0px 0px; margin-bottom: 4px; margin-top: 4px}
+A.newsdateheading:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #58677c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline; padding: 0px 0px 0px 0px; margin-bottom: 4px; margin-top: 4px}
+/* The table row that displays all the news items for a day */
+.newsdatebody {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #c2c2c2; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; padding: 0px 0px 0px 10px;}
+A.newsdatebody {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none; padding: 0px 0px 0px 10px;}
+A.newsdatebody:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline; padding: 0px 0px 0px 10px;}
+/* The text that says the news subject */
+.newssubject {color: #666600;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;	
+	font-weight: bold;
+	padding: 0px 0px 0px 0px;
+	margin-bottom: 2px;
+	margin-top: 15px}
+/* The text that says who posted and when the news was posted */
+.newsposter {font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #2E2E2E;	
+	padding: 3px 0px 0px 10px;}
+/* The body of the news item */
+.newscontent {color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding: 10px 10px 10px 10px;}
+A.newslink {color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding: 0px 0px 0px 0px;
+	text-decoration:underline}
+A.newslink:hover {color: #5555ff;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding: 0px 0px 0px 0px;
+	text-decoration:underline}
+
+/*****************************/
+/************ FAQ ************/
+/*****************************/
+/* A question */
+.faqquestion {FONT-WEIGHT: bold; FONT-SIZE: 10pt; BACKGROUND: #58677c; COLOR: #f7fbff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none; padding: 0px 0px 0px 0px; margin-bottom: 4px; margin-top: 4px}
+A.faqquestion {FONT-WEIGHT: bold; FONT-SIZE: 10pt; BACKGROUND: #58677c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none; padding: 0px 0px 0px 0px; margin-bottom: 4px; margin-top: 4px}
+A.faqquestion:hover {FONT-WEIGHT: bold; FONT-SIZE: 10pt; BACKGROUND: #58677c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline; padding: 0px 0px 0px 0px; margin-bottom: 4px; margin-top: 4px}
+/* An answer */
+.faqanswer {
+	color: #000000;
+	background-color: #c2c2c2;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding: 10px 10px 10px 10px;}
+/* A link in an answer */
+A.faqlink {color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding: 0px 0px 0px 0px;
+	text-decoration:underline}
+A.faqlink:hover {color: #5555ff;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	padding: 0px 0px 0px 0px;
+	text-decoration:underline}
+
+/*****************************/
+/******** DOWNLOADS **********/
+/*****************************/
+
+.changelistitem {font-family:"Courier New", Courier, mono;}
+
+/*****************************/
+/***** NAVIGATION BARS *******/
+/*****************************/
+/* The "title cell" of the site nav bar */
+.sitenavbar {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #9f9f9f; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.sitenavbar {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #9f9f9f; COLOR: #1c1c1c; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.sitenavbar:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #9f9f9f; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+/* Individual buttons on the site nav bar */
+.sitenavbartitle {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #cfcfcf; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.sitenavbartitle {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.sitenavbartitle:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline}
+
+/* The "title cell" of the game-specific navigation bar */
+.gamenavbartitle {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.gamenavbartitle {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #f4d01e; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: none}
+A.gamenavbartitle:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica; TEXT-DECORATION: underline}
+/* Individual buttons on the game-specific navigation bar */
+.gamenavbar {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.gamenavbar {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #dfedff; FONT-FAMILY: Verdana, Arial, Helvetica}
+A.gamenavbar:hover {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #485464; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+
+/*****************************/
+/***** EVENT LOG STYLES ******/
+/*****************************/
+/* $PB_EVENTTYPE_UNKNOWN = 0; */
+/* $PB_EVENTTYPE_SCOREINCREASE = 1; */
+/* $PB_EVENTTYPE_SCOREDECREASE = 2; */
+/* $PB_EVENTTYPE_YEARCHANGE = 3; */
+/* $PB_EVENTTYPE_PLAYERLOGIN = 4; */
+/* $PB_EVENTTYPE_PLAYERLOGOUT = 5; */
+/* $PB_EVENTTYPE_PLAYERCLAIMCIV = 6; */
+/* $PB_EVENTTYPE_AITAKEOVER = 7; */
+/* $PB_EVENTTYPE_PLAYERFINISHTURN = 8; */
+/* $PB_EVENTTYPE_UPLOADERINIT = 9; */
+/* $PB_EVENTTYPE_UPLOADERHALT = 10; */
+/* $PB_EVENTTYPE_NAMECHANGE = 11; */
+/* $PB_EVENTTYPE_PLAYERELIMINATED = 12; */
+/* $PB_EVENTTYPE_UPLOADERTIMEOUT = 13; */
+.event0 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event1 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event2 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event3 {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #cccccc; COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event4 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #454545; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event5 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #454545; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event6 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event7 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event8 {FONT-WEIGHT: bold; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event9 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event10 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event11 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event12 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #cc3333; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}
+.event13 {FONT-WEIGHT: normal; FONT-SIZE: 8pt; BACKGROUND: #6c6c6c; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica}

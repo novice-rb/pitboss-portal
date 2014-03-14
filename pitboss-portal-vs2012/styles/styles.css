@@ -1,0 +1,13 @@
+﻿.mainContainer {
+}
+.player {
+    clear: both;
+    width: 400px;
+}
+.playerName {
+    float: left;
+}
+.playerScore {
+    float: right;
+}
+
