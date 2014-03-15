@@ -27,7 +27,7 @@ namespace pitboss_portal
             {
                 r = new StreamReader(filepath);
                 string line = r.ReadLine();
-                while (!string.IsNullOrEmpty(line) && (cutoff == 0 || cutoff < lines.Count))
+                while (!string.IsNullOrEmpty(line) && (cutoff == 0 || cutoff > lines.Count))
                 {
                     lines.Add(line);
                     line = r.ReadLine();

@@ -2,13 +2,17 @@
 }
 .player, .event, .playerHeader {
     clear: both;
-    width: 400px;
+    width: 600px;
 }
 .playerInfo .playerHeader {
     font-weight: bold;
 }
+.player .playerEndedTurn {
+    width: 15px;
+}
 .playerName, .playerEndedTurn, .eventTime, .eventPlayer {
     float: left;
+    margin-right: 10px;
 }
 .playerScore, .eventType {
     float: right;

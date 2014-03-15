@@ -29,7 +29,7 @@ namespace pitboss_portal
             {
                 string[] parts = line.Split(new string[] {"---"}, StringSplitOptions.None);
                 scoreHtml += "<div class=\"player\">\n";
-                scoreHtml += "<div class=\"playerEndedTurn\">" + parts[0].Trim() + "</div>\n";
+                scoreHtml += "<div class=\"playerEndedTurn\">&nbsp;" + parts[0].Trim() + "</div>\n";
                 scoreHtml += "<div class=\"playerName\">" + parts[1].Trim() + "</div>\n";
                 scoreHtml += "<div class=\"playerScore\">" + parts[2].Trim() + "</div>\n";
                 scoreHtml += "</div>\n";
@@ -38,7 +38,7 @@ namespace pitboss_portal
 
             var eventHtml = "";
             var eventInfo = Parser.ReadFile(Parser.GetSetting("EventFile", "testdata/event.txt"), int.Parse(Parser.GetSetting("EventCutoff", "100")));
-            foreach (string line in scoreInfo)
+            foreach (string line in eventInfo)
             {
                 string[] parts = line.Split(new string[] { "---" }, StringSplitOptions.None);
                 eventHtml += "<div class=\"event\">\n";
