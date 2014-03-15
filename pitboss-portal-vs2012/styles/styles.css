@@ -1,13 +1,16 @@
 ﻿.mainContainer {
 }
-.player {
+.player, .event, .playerHeader {
     clear: both;
     width: 400px;
 }
-.playerName {
+.playerInfo .playerHeader {
+    font-weight: bold;
+}
+.playerName, .playerEndedTurn, .eventTime, .eventPlayer {
     float: left;
 }
-.playerScore {
+.playerScore, .eventType {
     float: right;
 }
 

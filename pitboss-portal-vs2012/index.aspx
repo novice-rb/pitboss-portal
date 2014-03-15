@@ -26,6 +26,8 @@
                 <asp:Literal runat="server" ID="litPlayerSummary"></asp:Literal>
             </div>
             <div class="eventLog">
+                <h1>Event Log</h1>
+                <asp:Literal runat="server" ID="litEventLog"></asp:Literal>
             </div>
         </div>
     </form>

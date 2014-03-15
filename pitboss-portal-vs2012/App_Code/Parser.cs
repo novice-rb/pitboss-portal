@@ -15,7 +15,7 @@ namespace pitboss_portal
             return value;
         }
 
-        public static List<string> ReadFile(string filepath)
+        public static List<string> ReadFile(string filepath, int cutoff)
         {
             if (!Path.IsPathRooted(filepath))
             {
@@ -27,7 +27,7 @@ namespace pitboss_portal
             {
                 r = new StreamReader(filepath);
                 string line = r.ReadLine();
-                while (!string.IsNullOrEmpty(line))
+                while (!string.IsNullOrEmpty(line) && (cutoff == 0 || cutoff < lines.Count))
                 {
                     lines.Add(line);
                     line = r.ReadLine();
