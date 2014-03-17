@@ -1,4 +1,7 @@
-﻿* --- plako --- 48 
-  --- Hannibal --- 11 
-  --- Peter --- 11
-  --- Shaka --- 11
+* --- plako --- 36 --- 0
+  --- Ragnar --- 11 --- 1
+  --- Joao II --- 11 --- 2
+  --- Wang Kon --- 11 --- 3
+  --- Boudica --- 11 --- 4
+  --- De Gaulle --- 11 --- 5
+  --- Cyrus --- 11 --- 6

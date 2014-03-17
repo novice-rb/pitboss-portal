@@ -40,6 +40,15 @@ namespace pitboss_portal {
         protected global::System.Web.UI.WebControls.Literal litGameName;
         
         /// <summary>
+        /// litYear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litYear;
+        
+        /// <summary>
         /// litTimeLeft control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace pitboss_portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litTimeLeft;
+        
+        /// <summary>
+        /// litSystemTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litSystemTime;
         
         /// <summary>
         /// litTurnRoll control.

@@ -14,7 +14,49 @@
     float: left;
     margin-right: 10px;
 }
-.playerScore, .eventType {
+.playerScore, .eventType, .eventTurn {
     float: right;
 }
-
+.eventTurn {
+    width: 60px;
+    text-align: right;
+}
+.timeZone {
+    display: none;
+}
+.timeZoneSystemTime,
+.timeZonePacificStandardTime,
+.timeZoneMountainStandardTime,
+.timeZoneCentralStandardTime,
+.timeZoneEasternStandardTime,
+.timeZoneESouthAmericaStandardTime,
+.timeZoneUTC,
+.timeZoneRomanceStandardTime,
+.timeZoneEEuropeStandardTime,
+.timeZoneRussianStandardTime,
+.timeZoneChinaStandardTime,
+.timeZoneWAustraliaStandardTime,
+.timeZoneAUSEasternStandardTime {
+    display: block;
+}
+.timeLeftHeader, .timeSystemTimeHeader, .timeZoneName {
+    float: left;
+}
+.timeValue, .timeZoneTime {
+    float: right;
+    text-align: right;
+}
+.timeZone, .turnRoll, .timeSystemTime, .timeLeft {
+    width: 600px;
+    clear: both;
+}
+.event {
+    border: solid 1px black;
+    height: 20px;
+}
+.eventTypeturnroll, .eventTypereload {
+    background-color: gray;
+}
+.eventTypeendturn {
+    background-color: lightgray;
+}

@@ -64,7 +64,9 @@
     <Content Include="testdata\event.txt" />
     <Content Include="testdata\score.txt" />
     <Content Include="testdata\time.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\Parser.cs" />
