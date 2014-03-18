@@ -11,7 +11,7 @@ namespace pitboss_portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            litTitle.Text = Parser.GetSetting("GameName", "Pitboss Game");
+            litTitle.Text = "Pitboss Game";
         }
     }
 }

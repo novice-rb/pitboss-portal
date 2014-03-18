@@ -69,7 +69,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Code\Parser.cs" />
     <Compile Include="civstats.aspx.cs">
       <DependentUpon>civstats.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -96,7 +95,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\" />
     <Folder Include="scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\pitboss-backend\pitboss-backend.csproj">
+      <Project>{de07c08c-bb8e-4472-a4c8-961c0366ee9c}</Project>
+      <Name>pitboss-backend</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

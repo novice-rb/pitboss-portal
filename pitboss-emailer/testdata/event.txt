@@ -1,0 +1,40 @@
+Mon Mar 17 22:09:42 2014  --- plako --- Disconnected --- 0 --- 0
+Mon Mar 17 22:09:42 2014  --- plako --- 36 --- 0 --- 0
+Mon Mar 17 22:09:38 2014  --- plako --- END TURN --- 0 --- 0
+Mon Mar 17 22:09:22 2014  --- plako --- Connected --- 0 --- 0
+Mon Mar 17 22:08:16 2014  --- Cyrus --- 11 --- 6 --- 0
+Mon Mar 17 22:08:16 2014  --- De Gaulle --- 11 --- 5 --- 0
+Mon Mar 17 22:08:16 2014  --- Boudica --- 11 --- 4 --- 0
+Mon Mar 17 22:08:16 2014  --- Wang Kon --- 11 --- 3 --- 0
+Mon Mar 17 22:08:16 2014  --- Joao II --- 11 --- 2 --- 0
+Mon Mar 17 22:08:16 2014  --- Ragnar --- 11 --- 1 --- 0
+Mon Mar 17 22:08:16 2014  --- Suryavarman II --- 11 --- 0 --- 0
+Mon Mar 17 02:02:53 2014  --- plako2 --- Disconnected --- 6 --- 1
+Mon Mar 17 02:02:53 2014  --- plako2 --- 34 --- 6 --- 1
+Mon Mar 17 01:58:11 2014  --- plako2 --- END TURN --- 6 --- 0
+Mon Mar 17 01:57:56 2014  --- Kublai Khan --- Connected --- 6 --- 0
+Mon Mar 17 01:57:48 2014  --- plako2 --- Disconnected --- 5 --- 0
+Mon Mar 17 01:57:48 2014  --- plako2 --- 34 --- 5 --- 0
+Mon Mar 17 01:57:45 2014  --- plako2 --- END TURN --- 5 --- 0
+Mon Mar 17 01:57:33 2014  --- Saladin --- Connected --- 5 --- 0
+Mon Mar 17 01:57:26 2014  --- plako2 --- Disconnected --- 4 --- 0
+Mon Mar 17 01:57:26 2014  --- plako2 --- 34 --- 4 --- 0
+Mon Mar 17 01:57:23 2014  --- plako2 --- END TURN --- 4 --- 0
+Mon Mar 17 01:57:11 2014  --- Joao II --- Connected --- 4 --- 0
+Mon Mar 17 01:57:04 2014  --- plako2 --- Disconnected --- 3 --- 0
+Mon Mar 17 01:57:04 2014  --- plako2 --- 34 --- 3 --- 0
+Mon Mar 17 01:57:00 2014  --- plako2 --- END TURN --- 3 --- 0
+Mon Mar 17 01:56:51 2014  --- Ramesses II --- Connected --- 3 --- 0
+Mon Mar 17 01:56:19 2014  --- plako2 --- Disconnected --- 2 --- 0
+Mon Mar 17 01:56:19 2014  --- plako2 --- 34 --- 2 --- 0
+Mon Mar 17 01:56:16 2014  --- plako2 --- END TURN --- 2 --- 0
+Mon Mar 17 01:56:10 2014  --- plako2 --- Connected --- 2 --- 0
+Mon Mar 17 01:55:56 2014  --- plako2 --- Disconnected --- 1 --- 0
+Mon Mar 17 01:55:56 2014  --- plako2 --- 34 --- 1 --- 0
+Mon Mar 17 01:55:51 2014  --- plako2 --- END TURN --- 1 --- 0
+Mon Mar 17 01:55:40 2014  --- Darius I --- Connected --- 1 --- 0
+Mon Mar 17 01:55:08 2014  --- plako5 --- Disconnected --- 0 --- 0
+Mon Mar 17 01:55:08 2014  --- plako5 --- 34 --- 0 --- 0
+Mon Mar 17 01:55:04 2014  --- plako5 --- END TURN --- 0 --- 0
+Mon Mar 17 01:54:48 2014  --- plako5 --- Connected --- 0 --- 0
+---LAST LINE---

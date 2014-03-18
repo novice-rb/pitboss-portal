@@ -1,56 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace pitboss_portal
+namespace pitboss_backend
 {
-    public class Parser
-    {
-        public static string GetSetting(string key, string defaultValue)
-        {
-            string value = System.Web.Configuration.WebConfigurationManager.AppSettings[key];
-            if (string.IsNullOrEmpty(value)) return defaultValue;
-            return value;
-        }
-
-        public static List<string> ReadFile(string filepath, int cutoff)
-        {
-            if (!Path.IsPathRooted(filepath))
-            {
-                filepath = HttpContext.Current.Server.MapPath(filepath);
-            }
-            List<string> lines = new List<string>();
-            StreamReader r = null;
-            try
-            {
-                bool lastLine = false;
-                r = new StreamReader(filepath);
-                string line = r.ReadLine();
-                while (line != null && !lastLine && (cutoff == 0 || cutoff > lines.Count))
-                {
-                    line = line.Trim(' ', '\0', '\r');
-                    if (line == "---LAST LINE---")
-                    {
-                        lastLine = true;
-                    }
-                    else if (line != "")
-                    {
-                        lines.Add(line);
-                    }
-                    line = r.ReadLine();
-                }
-                return lines;
-            }
-            finally
-            {
-                if (r != null) r.Close();
-            }
-        }
-
-    }
-
     public class EventLine
     {
         public EventLine(string eventTime, string playerName, string eventType, string eventTypeDescription, int playerId, int turn)
@@ -94,7 +49,7 @@ namespace pitboss_portal
 
         public string ToHtml()
         {
-            if(ParseException != null) return "<div class=\"event\">Error parsing event line &quot;" + RawLine + "&quot;: " + ParseException.Message + "</div>";
+            if (ParseException != null) return "<div class=\"event\">Error parsing event line &quot;" + RawLine + "&quot;: " + ParseException.Message + "</div>";
             string eventHtml = "<div class=\"event eventType" + EventType + "\">\n";
             eventHtml += "<div class=\"eventTime\">" + EventTime + "</div>\n";
             eventHtml += "<div class=\"eventPlayer\">" + PlayerName + "</div>\n";
@@ -113,4 +68,5 @@ namespace pitboss_portal
         public int Turn { get; private set; }
         public Exception ParseException { get; private set; }
     }
+
 }

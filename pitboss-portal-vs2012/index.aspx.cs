@@ -1,4 +1,5 @@
-﻿using System;
+﻿using pitboss_backend;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,15 +11,32 @@ namespace pitboss_portal
 {
     public partial class index : System.Web.UI.Page
     {
+        private string GetSetting(string key, string defaultValue)
+        {
+            string value = System.Web.Configuration.WebConfigurationManager.AppSettings[key];
+            if (string.IsNullOrEmpty(value)) return defaultValue;
+            return value;
+        }
+
+        private string GetSettingPath(string key, string defaultValue)
+        {
+            string filepath = GetSetting(key, defaultValue);
+            if (!System.IO.Path.IsPathRooted(filepath))
+            {
+                filepath = HttpContext.Current.Server.MapPath(filepath);
+            }
+            return filepath;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            litTitle.Text = Parser.GetSetting("GameName", "Pitboss Game");
+            litTitle.Text = GetSetting("GameName", "Pitboss Game");
             litGameName.Text = litTitle.Text;
 
             List<string> timeInfo = new List<string>();
             try
             {
-                timeInfo = Parser.ReadFile(Parser.GetSetting("TimeFile", "testdata/time.txt"), 0);
+                timeInfo = FileReader.ReadFile(GetSettingPath("TimeFile", "testdata/time.txt"), 0);
             }
             catch (Exception ex)
             {
@@ -63,7 +81,7 @@ namespace pitboss_portal
             List<string> scoreInfo = new List<string>();
             try
             {
-                scoreInfo = Parser.ReadFile(Parser.GetSetting("ScoreFile", "testdata/score.txt"), 0);
+                scoreInfo = FileReader.ReadFile(GetSettingPath("ScoreFile", "testdata/score.txt"), 0);
             }
             catch (Exception ex)
             {
@@ -83,7 +101,7 @@ namespace pitboss_portal
             List<string> eventInfo = new List<string>();
             try
             {
-                eventInfo = Parser.ReadFile(Parser.GetSetting("EventFile", "testdata/event.txt"), int.Parse(Parser.GetSetting("EventCutoff", "100")));
+                eventInfo = FileReader.ReadFile(GetSettingPath("EventFile", "testdata/event.txt"), int.Parse(GetSetting("EventCutoff", "100")));
             }
             catch (Exception ex)
             {
