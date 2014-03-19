@@ -40,7 +40,7 @@ namespace pitboss_emailer
                 FileReader.WriteFile(GetSettingPath("EmailerFile", "testdata/emailer.txt"), emailerInfo);
             }
             Console.WriteLine("Done processing event log.");
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         private static string ProcessEventLog()
@@ -57,7 +57,7 @@ namespace pitboss_emailer
             }
             try
             {
-                _Emailer = new EmailUtility(GetSetting("SmtpServer", null), int.Parse(GetSetting("SmtpPort", "25")), GetSetting("SmtpUsername", null), GetSetting("SmtpPassword", null), GetSetting("SmtpDomain", null), int.Parse(GetSetting("WaitTimeBetweenSends", "2000")));
+                _Emailer = new EmailUtility(int.Parse(GetSetting("WaitTimeBetweenSends", "2000")));
             }
             catch (Exception ex)
             {

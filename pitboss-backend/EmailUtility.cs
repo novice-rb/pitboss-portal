@@ -15,21 +15,10 @@ namespace pitboss_backend
         private SmtpClient _smtpClient;
         private int _waitTimeBetweenSends;
 
-        public EmailUtility(string smtpServer, int portNumber, string userName, string password, string domain, int waitTimeBetweenSends)
+        public EmailUtility(int waitTimeBetweenSends)
         {
             _waitTimeBetweenSends = waitTimeBetweenSends;
-            _smtpClient = new SmtpClient(smtpServer, portNumber);
-            _smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            if(!string.IsNullOrEmpty(userName)) {
-                if (string.IsNullOrEmpty(domain))
-                {
-                    _smtpClient.Credentials = new NetworkCredential(userName, password);
-                }
-                else
-                {
-                    _smtpClient.Credentials = new NetworkCredential(userName, password, domain);
-                }
-            }
+            _smtpClient = new SmtpClient();
         }
 
         public void SendEmails(string fromAddress, IEnumerable<string> recipientAddresses, string subject, string bodyHtml)
