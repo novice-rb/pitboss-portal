@@ -37,6 +37,21 @@ namespace pitboss_backend
             }
         }
 
+        public static void WriteFile(string filepath, List<string> lines)
+        {
+            StreamWriter writer = null;
+            try
+            {
+                writer = new StreamWriter(filepath, false);
+                foreach (var line in lines)
+                    writer.WriteLine(line);
+            }
+            finally
+            {
+                if (writer != null) writer.Close();
+            }
+        }
+
     }
 
 }

@@ -27,7 +27,22 @@ namespace pitboss_emailer
             return filepath;
         }
 
+        private static EmailUtility _Emailer;
+
         static void Main(string[] args)
+        {
+            string lastLineProcessed = ProcessEventLog();
+            if (!string.IsNullOrEmpty(lastLineProcessed))
+            {
+                var emailerInfo = new List<string>();
+                emailerInfo.Add(lastLineProcessed);
+                FileReader.WriteFile(GetSettingPath("EmailerFile", "testdata/emailer.txt"), emailerInfo);
+            }
+            Console.WriteLine("Done processing event log.");
+            Console.ReadLine();
+        }
+
+        private static string ProcessEventLog()
         {
             List<string> emailerInfo = new List<string>();
             try
@@ -37,11 +52,21 @@ namespace pitboss_emailer
             catch (Exception ex)
             {
                 Console.WriteLine("Error reading emailer.txt: " + ex.ToString());
-                return;
+                return null;
+            }
+            try
+            {
+                _Emailer = new EmailUtility(GetSetting("SmtpServer", null), int.Parse(GetSetting("SmtpPort", "25")), GetSetting("SmtpUsername", null), GetSetting("SmtpPassword", null), GetSetting("SmtpDomain", null));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error setting up smtp client: " + ex.ToString());
+                return null;
             }
             string lastEventProcessed = null;
-            if(emailerInfo.Count > 0) lastEventProcessed = emailerInfo[0];
+            if (emailerInfo.Count > 0) lastEventProcessed = emailerInfo[0];
 
+            // Read event log
             List<string> eventInfo = new List<string>();
             try
             {
@@ -50,56 +75,63 @@ namespace pitboss_emailer
             catch (Exception ex)
             {
                 Console.WriteLine("Error reading event.txt: " + ex.ToString());
-                return;
+                return null;
             }
-            List<EventLine> eventLines = new List<EventLine>();
+            // Truncate at last line processed last time this utility was run
+            List<string> newEvents = new List<string>();
             foreach (string line in eventInfo)
             {
                 if (!string.IsNullOrEmpty(lastEventProcessed) && line == lastEventProcessed) break;
-                EventLine evt = new EventLine(line);
-                eventLines.Add(evt);
+                newEvents.Add(line);
             }
+            newEvents.Reverse();
+
+            // What was the turn number for the last event processed?
             int lastTurnProcessed = 0;
             if (!string.IsNullOrEmpty(lastEventProcessed))
             {
                 lastTurnProcessed = new EventLine(lastEventProcessed).Turn;
             }
-            eventLines.Reverse();
-            foreach (var evt in eventLines)
+
+            // Process new lines
+            string lastLineProcessed = null;
+            foreach (string eventLine in newEvents)
             {
+                EventLine evt = new EventLine(eventLine);
                 if (evt.Turn > lastTurnProcessed)
                 {
-                    SendTurnRollEmail(evt.Turn);
+                    if (!SendTurnRollEmail(evt.Turn)) return lastLineProcessed;
                     lastTurnProcessed = evt.Turn;
                 }
                 else if (evt.Turn >= 0 && evt.Turn < lastTurnProcessed)
                 {
-                    SendReloadDetectedEmail(evt.Turn);
+                    if (!SendReloadDetectedEmail(evt.Turn)) return lastLineProcessed;
                     lastTurnProcessed = evt.Turn;
                 }
+                lastLineProcessed = eventLine;
             }
-            Console.WriteLine("Done processing event log.");
+            return lastLineProcessed;
         }
 
-        private static void SendTurnRollEmail(int turn)
+        private static bool SendTurnRollEmail(int turn)
         {
             string subject = GetSetting("TurnRollSubject", "Turn {0} has begun");
             subject = string.Format(subject, turn);
             string message = GetSetting("TurnRollMessage", "Turn has rolled to turn {0}.");
             message = string.Format(message, turn);
-            SendEmailNotifications(turn, "Turn roll", subject, message);
+            return SendEmailNotifications(turn, "Turn roll", subject, message);
         }
 
-        private static void SendReloadDetectedEmail(int turn)
+        private static bool SendReloadDetectedEmail(int turn)
         {
             string subject = GetSetting("ReloadSubject", "Game reloaded to turn {0}");
             subject = string.Format(subject, turn);
             string message = GetSetting("ReloadMessage", "A reload to turn {0} has been detected.");
             message = string.Format(message, turn);
-            SendEmailNotifications(turn, "Reload", subject, message);
+            return SendEmailNotifications(turn, "Reload", subject, message);
         }
 
-        private static void SendEmailNotifications(int turn, string notificationType, string subject, string message)
+        private static bool SendEmailNotifications(int turn, string notificationType, string subject, string message)
         {
             Console.WriteLine(notificationType + " to turn " + turn + " detected. Sending email notifications...");
             try
@@ -107,15 +139,16 @@ namespace pitboss_emailer
                 string recipients = GetSetting("Recipients", null);
                 if (!string.IsNullOrEmpty(recipients))
                 {
-                    EmailUtility emailer = new EmailUtility(GetSetting("SmtpServer", null), int.Parse(GetSetting("SmtpPort", "25")), GetSetting("SmtpUsername", null), GetSetting("SmtpPassword", null), GetSetting("SmtpDomain", null));
-                    emailer.SendEmails(GetSetting("FromAddress", "pitboss-portal@caledorn.no-ip.org"), recipients.Split(';'), subject, message);
+                    _Emailer.SendEmails(GetSetting("FromAddress", "pitboss-portal@caledorn.no-ip.org"), recipients.Split(';'), subject, message);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error sending email: " + ex.ToString());
+                return false;
             }
             Console.WriteLine("Email notifications sent successfully.");
+            return true;
         }
     }
 }
