@@ -21,8 +21,9 @@ namespace pitboss_emailer
             string filepath = GetSetting(key, defaultValue);
             if (!System.IO.Path.IsPathRooted(filepath))
             {
-                string binPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase);
-                filepath = System.IO.Path.Combine(binPath, filepath);
+                string codebase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+                string binPath = System.IO.Path.GetDirectoryName(codebase.Replace("file:///", ""));
+                filepath = System.IO.Path.Combine(binPath, "../../", filepath);
             }
             return filepath;
         }
@@ -56,7 +57,7 @@ namespace pitboss_emailer
             }
             try
             {
-                _Emailer = new EmailUtility(GetSetting("SmtpServer", null), int.Parse(GetSetting("SmtpPort", "25")), GetSetting("SmtpUsername", null), GetSetting("SmtpPassword", null), GetSetting("SmtpDomain", null));
+                _Emailer = new EmailUtility(GetSetting("SmtpServer", null), int.Parse(GetSetting("SmtpPort", "25")), GetSetting("SmtpUsername", null), GetSetting("SmtpPassword", null), GetSetting("SmtpDomain", null), int.Parse(GetSetting("WaitTimeBetweenSends", "2000")));
             }
             catch (Exception ex)
             {
