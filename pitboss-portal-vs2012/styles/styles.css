@@ -1,21 +1,56 @@
 ﻿.mainContainer {
 }
-.player, .event, .playerHeader {
+
+.player, .playerHeader {
     clear: both;
-    width: 600px;
+    width: 800px;
+}
+.player {
+    height: 20px;
+    border: 1px solid black;
+    background-color: #f7c4c4;
+}
+.HasLoggedIn {
+    background-color: #faf9c9;
+}
+.HasEndedTurn {
+    background-color: #dff6b5;
+}
+.IsLoggedIn .onlineStatus {
+    font-style: italic;
+}
+.whosPlayedSummary {
+    margin-bottom: 10px;
+    border: solid 1px black;
+    padding: 5px;
+    width: 790px;
 }
 .playerInfo .playerHeader {
     font-weight: bold;
 }
-.player .playerEndedTurn {
+.playerEndedTurn {
     width: 15px;
 }
-.playerName, .playerEndedTurn, .eventTime, .eventPlayer {
+.playerName, .playerEndedTurn, .teamName, .leaderName, .civilizationName {
     float: left;
     margin-right: 10px;
 }
-.playerScore, .eventType, .eventTurn {
+.playerName, .leaderName, .civilizationName {
+    width: 130px;
+}
+.teamName {
+    width: 170px;
+}
+.playerScore, .onlineStatus {
     float: right;
+    margin-left: 10px;
+}
+.playerScore {
+    width: 40px;
+    text-align: right;
+}
+.onlineStatus {
+    width: 100px;
 }
 .eventTurn {
     width: 60px;
@@ -50,9 +85,26 @@
     width: 600px;
     clear: both;
 }
+.timeLeft {
+    font-weight: bold;
+    font-size: larger;
+}
 .event {
+    clear: both;
+    width: 800px;
     border: solid 1px black;
     height: 20px;
+}
+.eventTime, .eventPlayer {
+    float: left;
+    margin-right: 10px;
+}
+.eventType, .eventTurn {
+    float: right;
+}
+.eventTurn {
+    width: 60px;
+    text-align: right;
 }
 .eventTypeturnroll, .eventTypereload {
     background-color: gray;

@@ -76,6 +76,33 @@ namespace pitboss_portal {
         protected global::System.Web.UI.WebControls.Literal litTurnRoll;
         
         /// <summary>
+        /// litNumberDone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNumberDone;
+        
+        /// <summary>
+        /// litNumberLoggedIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNumberLoggedIn;
+        
+        /// <summary>
+        /// litNumberLeft control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNumberLeft;
+        
+        /// <summary>
         /// litPlayerSummary control.
         /// </summary>
         /// <remarks>

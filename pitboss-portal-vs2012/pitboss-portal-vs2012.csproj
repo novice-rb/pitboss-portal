@@ -62,6 +62,7 @@
     <Content Include="styles\civstats.css" />
     <Content Include="styles\styles.css" />
     <Content Include="testdata\event.txt" />
+    <Content Include="testdata\players.txt" />
     <Content Include="testdata\score.txt" />
     <Content Include="testdata\time.txt" />
     <Content Include="Web.config">

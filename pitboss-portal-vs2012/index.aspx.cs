@@ -33,71 +33,13 @@ namespace pitboss_portal
             litTitle.Text = GetSetting("GameName", "Pitboss Game");
             litGameName.Text = litTitle.Text;
 
-            List<string> timeInfo = new List<string>();
-            try
-            {
-                timeInfo = FileReader.ReadFile(GetSettingPath("TimeFile", "testdata/time.txt"), 0);
-            }
-            catch (Exception ex)
-            {
-                litTimeLeft.Text = "Error reading time.txt: " + ex.Message;
-            }
-            if(timeInfo.Count > 0) litTimeLeft.Text = timeInfo[0];
-            if (timeInfo.Count > 1)
-            {
-                litSystemTime.Text = timeInfo[1]; //"Sun Mar 16 19:24:41 2014"
-                if (timeInfo.Count > 3)
-                {
-                    string year = timeInfo[2];
-                    string turn = timeInfo[3];
-                    bool bc = year.StartsWith("-");
-                    year = year.Replace("-", "").Replace("+", "");
-                    litYear.Text = "It is turn " + turn + " (" + year + " " + (bc ? "BC" : "AD") + ")";
-                }
-                try
-                {
-                    string[] timeLeftParts = timeInfo[0].Split(':');
-                    TimeSpan timeLeft = new TimeSpan(int.Parse(timeLeftParts[0]), int.Parse(timeLeftParts[1]), int.Parse(timeLeftParts[2]));
-                    //TimeSpan timeLeft = TimeSpan.ParseExact(timeInfo[0], "HH:mm:ss", CultureInfo.InvariantCulture);
-                    DateTime turnRoll = DateTime.ParseExact(timeInfo[1].Substring(4), "MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
-                    turnRoll = turnRoll.Add(timeLeft);
-                    //litTurnRoll.Text = "<div class=\"timeZone timeZoneSystemTime\">System time: " + turnRoll.ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture) + "</div>\n";
-                    foreach(var timeZone in TimeZoneInfo.GetSystemTimeZones()) {
-                        litTurnRoll.Text += "<div class=\"timeZone timeZone" + timeZone.Id.Replace(" ", "").Replace(".","").Replace("+","plus") + "\"><div class=\"timeZoneName\">" + timeZone.DisplayName + ":</div><div class=\"timeZoneTime\">" + TimeZoneInfo.ConvertTimeFromUtc(turnRoll, timeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture) + "</div></div>\n";
-                    }
-                }
-                catch (Exception ex)
-                {
-                    litTurnRoll.Text = "You do the math! (I failed with the error " + ex.Message + ")";
-                }
-            }
+            int turn = ShowTimeInfo();
+            var events = ShowEvents();
+            ShowPlayerSummary(turn, events);
+        }
 
-            var scoreHtml = "";
-            scoreHtml += "<div class=\"playerHeader\">\n";
-            scoreHtml += "<div class=\"playerEndedTurn\">Ended turn?</div>\n";
-            scoreHtml += "<div class=\"playerName\">Player</div>\n";
-            scoreHtml += "<div class=\"playerScore\">Score</div>\n";
-            scoreHtml += "</div>\n";
-            List<string> scoreInfo = new List<string>();
-            try
-            {
-                scoreInfo = FileReader.ReadFile(GetSettingPath("ScoreFile", "testdata/score.txt"), 0);
-            }
-            catch (Exception ex)
-            {
-                scoreHtml = "Error reading score.txt: " + ex.Message;
-            }
-            foreach (string line in scoreInfo)
-            {
-                string[] parts = line.Split(new string[] {"---"}, StringSplitOptions.None);
-                scoreHtml += "<div class=\"player\">\n";
-                scoreHtml += "<div class=\"playerEndedTurn\">&nbsp;" + parts[0].Trim() + "</div>\n";
-                scoreHtml += "<div class=\"playerName\">" + parts[1].Trim() + "</div>\n";
-                scoreHtml += "<div class=\"playerScore\">" + parts[2].Trim() + "</div>\n";
-                scoreHtml += "</div>\n";
-            }
-            litPlayerSummary.Text = scoreHtml;
-
+        private List<EventLine> ShowEvents()
+        {
             List<string> eventInfo = new List<string>();
             try
             {
@@ -151,6 +93,128 @@ namespace pitboss_portal
                 }
                 litEventLog.Text = eventHtml;
             }
+            return newEvents;
+        }
+
+        private int ShowTimeInfo()
+        {
+            int turn = -1;
+            List<string> timeInfo = new List<string>();
+            try
+            {
+                timeInfo = FileReader.ReadFile(GetSettingPath("TimeFile", "testdata/time.txt"), 0);
+            }
+            catch (Exception ex)
+            {
+                litTimeLeft.Text = "Error reading time.txt: " + ex.Message;
+            }
+            if (timeInfo.Count > 0) litTimeLeft.Text = timeInfo[0];
+            if (timeInfo.Count > 1)
+            {
+                litSystemTime.Text = timeInfo[1]; //"Sun Mar 16 19:24:41 2014"
+                if (timeInfo.Count > 3)
+                {
+                    string year = timeInfo[2];
+                    turn = int.Parse(timeInfo[3]);
+                    bool bc = year.StartsWith("-");
+                    year = year.Replace("-", "").Replace("+", "");
+                    litYear.Text = "It is turn " + turn + " (" + year + " " + (bc ? "BC" : "AD") + ")";
+                }
+                try
+                {
+                    string[] timeLeftParts = timeInfo[0].Split(':');
+                    TimeSpan timeLeft = new TimeSpan(int.Parse(timeLeftParts[0]), int.Parse(timeLeftParts[1]), int.Parse(timeLeftParts[2]));
+                    //TimeSpan timeLeft = TimeSpan.ParseExact(timeInfo[0], "HH:mm:ss", CultureInfo.InvariantCulture);
+                    DateTime turnRoll = DateTime.ParseExact(timeInfo[1].Substring(4), "MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
+                    turnRoll = turnRoll.Add(timeLeft);
+                    //litTurnRoll.Text = "<div class=\"timeZone timeZoneSystemTime\">System time: " + turnRoll.ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture) + "</div>\n";
+                    foreach (var timeZone in TimeZoneInfo.GetSystemTimeZones())
+                    {
+                        litTurnRoll.Text += "<div class=\"timeZone timeZone" + timeZone.Id.Replace(" ", "").Replace(".", "").Replace("+", "plus") + "\"><div class=\"timeZoneName\">" + timeZone.DisplayName + ":</div><div class=\"timeZoneTime\">" + TimeZoneInfo.ConvertTimeFromUtc(turnRoll, timeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture) + "</div></div>\n";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    litTurnRoll.Text = "You do the math! (I failed with the error " + ex.Message + ")";
+                }
+            }
+            return turn;
+        }
+
+        private void ShowPlayerSummary(int turn, List<EventLine> events)
+        {
+            var scoreHtml = @"
+<div class=""playerHeader"">
+    <div class=""playerEndedTurn"">&nbsp;</div>
+    <div class=""playerName"">Last login</div>
+    <div class=""teamName"">Players</div>
+    <div class=""leaderName"">Leader</div>
+    <div class=""civilizationName"">Civilization</div>
+    <div class=""playerScore"">Score</div>
+    <div class=""onlineStatus"">Status</div>
+</div>";
+            List<string> scoreInfo = new List<string>();
+            try
+            {
+                scoreInfo = FileReader.ReadFile(GetSettingPath("ScoreFile", "testdata/score.txt"), 0);
+            }
+            catch (Exception ex)
+            {
+                scoreHtml = "Error reading score.txt: " + ex.Message;
+            }
+            List<PlayerInfo> players = new List<PlayerInfo>();
+            try
+            {
+                Dictionary<int, PlayerInfo> playersByPlayerId = new Dictionary<int, PlayerInfo>();
+                List<string> playerStrings = FileReader.ReadFile(GetSettingPath("PlayersFile", "testdata/players.txt"), 0);
+                foreach (string p in playerStrings)
+                {
+                    PlayerInfo pl = new PlayerInfo(p);
+                    playersByPlayerId[pl.PlayerId] = pl;
+                    players.Add(pl);
+                }
+                foreach (string line in scoreInfo)
+                {
+                    try
+                    {
+                        string[] parts = line.Split(new string[] { "---" }, StringSplitOptions.None);
+                        int playerId = int.Parse(parts[3].Trim());
+                        PlayerInfo pl = playersByPlayerId[playerId];
+                        pl.Score = int.Parse(parts[2].Trim());
+                        pl.PlayerName = parts[1].Trim();
+                        pl.HasEndedTurn = (parts[0].Trim() == "*");
+                    }
+                    catch (Exception ex2)
+                    {
+                        scoreHtml += "<div class=\"player\">Error processing score line &quot;" + line + "&quot;: " + ex2.Message + "</div>";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                scoreHtml = "Error parsing score.txt or players.txt: " + ex.Message;
+            }
+            
+            if (turn < 0) turn = events.Max(e => e.Turn);
+            var turnEvents = events.Where(e => e.Turn == turn).Reverse();
+            foreach (var pl in players)
+            {
+                foreach (var evt in turnEvents.Where(evt => evt.PlayerId == pl.PlayerId))
+                {
+                    pl.HasLoggedIn = true;
+                    if (evt.EventType == "connected")
+                        pl.IsLoggedIn = true;
+                    else if (evt.EventType == "disconnected")
+                        pl.IsLoggedIn = false;
+                }
+                scoreHtml += pl.ToHtml();
+            }
+            litPlayerSummary.Text = scoreHtml;
+
+            int playerCount = players.Count;
+            litNumberDone.Text = players.Count(p => p.HasEndedTurn) + " of " + playerCount;
+            litNumberLoggedIn.Text = players.Count(p => p.HasLoggedIn && !p.HasEndedTurn) + " of " + playerCount;
+            litNumberLeft.Text = players.Count(p => !p.HasLoggedIn && !p.HasEndedTurn) + " of " + playerCount;
         }
     }
 }

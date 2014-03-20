@@ -24,6 +24,11 @@
             </div>
             <div class="playerInfo">
                 <h1>Player Summary</h1>
+                <div class="whosPlayedSummary">
+                    <div class="numberDone"><asp:Literal runat="server" ID="litNumberDone"></asp:Literal> players have played their turn.</div>
+                    <div class="numberLoggedIn"><asp:Literal runat="server" ID="litNumberLoggedIn"></asp:Literal> players have logged in but not played.</div>
+                    <div class="numberLeft"><asp:Literal runat="server" ID="litNumberLeft"></asp:Literal> players have not logged in this turn.</div>
+                </div>
                 <asp:Literal runat="server" ID="litPlayerSummary"></asp:Literal>
             </div>
             <div class="eventLog">
