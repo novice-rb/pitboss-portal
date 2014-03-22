@@ -40,6 +40,33 @@ namespace pitboss_portal {
         protected global::System.Web.UI.WebControls.Literal litGameName;
         
         /// <summary>
+        /// litConnectionAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litConnectionAddress;
+        
+        /// <summary>
+        /// litGameVersion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litGameVersion;
+        
+        /// <summary>
+        /// litExternalLinks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litExternalLinks;
+        
+        /// <summary>
         /// litYear control.
         /// </summary>
         /// <remarks>
@@ -58,6 +85,15 @@ namespace pitboss_portal {
         protected global::System.Web.UI.WebControls.Literal litTimeLeft;
         
         /// <summary>
+        /// litSystemTimeUTCOffset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litSystemTimeUTCOffset;
+        
+        /// <summary>
         /// litSystemTime control.
         /// </summary>
         /// <remarks>
@@ -65,6 +101,24 @@ namespace pitboss_portal {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litSystemTime;
+        
+        /// <summary>
+        /// ddlTimeZone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTimeZone;
+        
+        /// <summary>
+        /// litYourTime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litYourTime;
         
         /// <summary>
         /// litTurnRoll control.

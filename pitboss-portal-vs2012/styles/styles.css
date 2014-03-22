@@ -1,7 +1,37 @@
 ﻿.mainContainer {
 }
+h1 {
+    margin-bottom: 6px;
+    padding-top: 12px;
+    font-size: 1.5em;
+}
+.gameInfo {
+    width: 400px;
+}
+.gameInfoHeader {
+    clear: both;
+    float: left;
+}
+.gameInfoValue {
+    float: right;
+    text-align: right;
+}
+.gameInfoLink {
+}
+.externalLinks {
+    clear: both;
+}
+.externalLink {
+    float: left;
+    margin-right: 15px;
+    padding-right: 15px;
+    border-right: solid 1px black;
+}
+.externalLink:last-child {
+    border-right: none;
+}
 
-.player, .playerHeader {
+.player, .playerHeader, .playerInfo {
     clear: both;
     width: 800px;
 }
@@ -56,39 +86,33 @@
     width: 60px;
     text-align: right;
 }
-.timeZone {
-    display: none;
+
+.timeInfo {
+    clear: both;
 }
-.timeZoneSystemTime,
-.timeZonePacificStandardTime,
-.timeZoneMountainStandardTime,
-.timeZoneCentralStandardTime,
-.timeZoneEasternStandardTime,
-.timeZoneESouthAmericaStandardTime,
-.timeZoneUTC,
-.timeZoneRomanceStandardTime,
-.timeZoneEEuropeStandardTime,
-.timeZoneRussianStandardTime,
-.timeZoneChinaStandardTime,
-.timeZoneWAustraliaStandardTime,
-.timeZoneAUSEasternStandardTime {
-    display: block;
-}
-.timeLeftHeader, .timeSystemTimeHeader, .timeZoneName {
+.timeLeftHeader, .turnRollHeader, .timeSystemTimeHeader, .timeZonePickerHeader, .yourTimeIs {
     float: left;
+    clear: both;
 }
-.timeValue, .timeZoneTime {
+.timeZonePicker {
+    float: right;
+}
+.timeValue, .yourTimeValue, .turnRollValue {
     float: right;
     text-align: right;
 }
-.timeZone, .turnRoll, .timeSystemTime, .timeLeft {
+.timeSystemTime, .timeLeft {
     width: 600px;
     clear: both;
 }
-.timeLeft {
+.timeLeft, .turnRollValue {
     font-weight: bold;
     font-size: larger;
 }
+.yourTime {
+    clear: both;
+}
+
 .event {
     clear: both;
     width: 800px;

@@ -28,14 +28,33 @@ namespace pitboss_portal
             return filepath;
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_PreRender(object sender, EventArgs e)
         {
-            litTitle.Text = GetSetting("GameName", "Pitboss Game");
-            litGameName.Text = litTitle.Text;
-
+            ShowGameInfo();
             int turn = ShowTimeInfo();
             var events = ShowEvents();
             ShowPlayerSummary(turn, events);
+        }
+
+        private void ShowGameInfo()
+        {
+            litTitle.Text = GetSetting("GameName", "Pitboss Game");
+            litGameName.Text = litTitle.Text;
+            litConnectionAddress.Text = GetSetting("ConnectionAddress", "");
+            string modUrl = GetSetting("VersionLink", "");
+            string mod = GetSetting("Version", "Beyond the Sword");
+            if (!string.IsNullOrEmpty(modUrl)) mod = "<a href=\"" + modUrl + "\">" + mod + "</a>";
+            litGameVersion.Text = mod;
+            litExternalLinks.Text = "";
+            int linkId = 1;
+            string link = GetSetting("ExternalLink" + linkId, null);
+            while (!string.IsNullOrEmpty(link))
+            {
+                string[] linkParts = link.Split('|');
+                litExternalLinks.Text += "<div class=\"externalLink\"><a href=\"" + linkParts[0] + "\">" + (linkParts.Length > 1 ? linkParts[1] : linkParts[0]) + "</a></div>";
+                linkId++;
+                link = GetSetting("ExternalLink" + linkId, null);
+            }
         }
 
         private List<EventLine> ShowEvents()
@@ -125,13 +144,38 @@ namespace pitboss_portal
                     string[] timeLeftParts = timeInfo[0].Split(':');
                     TimeSpan timeLeft = new TimeSpan(int.Parse(timeLeftParts[0]), int.Parse(timeLeftParts[1]), int.Parse(timeLeftParts[2]));
                     //TimeSpan timeLeft = TimeSpan.ParseExact(timeInfo[0], "HH:mm:ss", CultureInfo.InvariantCulture);
-                    DateTime turnRoll = DateTime.ParseExact(timeInfo[1].Substring(4), "MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
-                    turnRoll = turnRoll.Add(timeLeft);
+                    DateTime now = DateTime.ParseExact(timeInfo[1].Substring(4), "MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
+                    int utcOffset = int.Parse(GetSetting("SystemTimeUTCOffset", "1"));
+                    litSystemTimeUTCOffset.Text = utcOffset == 0 ? "" : ((utcOffset > 0 ? "+" : "-") + utcOffset);
+                    now = now.AddHours(0-utcOffset);
+                    DateTime turnRoll = now.Add(timeLeft);
                     //litTurnRoll.Text = "<div class=\"timeZone timeZoneSystemTime\">System time: " + turnRoll.ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture) + "</div>\n";
-                    foreach (var timeZone in TimeZoneInfo.GetSystemTimeZones())
+                    if (!Page.IsPostBack)
                     {
-                        litTurnRoll.Text += "<div class=\"timeZone timeZone" + timeZone.Id.Replace(" ", "").Replace(".", "").Replace("+", "plus") + "\"><div class=\"timeZoneName\">" + timeZone.DisplayName + ":</div><div class=\"timeZoneTime\">" + TimeZoneInfo.ConvertTimeFromUtc(turnRoll, timeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture) + "</div></div>\n";
+                        ddlTimeZone.Items.Clear();
+                        foreach (var timeZone in TimeZoneInfo.GetSystemTimeZones())
+                        {
+                            string timeZoneId = GetTimeZoneId(timeZone);
+                            ddlTimeZone.Items.Add(new ListItem(timeZone.DisplayName, timeZoneId));
+                        }
+                        var cookie = Page.Request.Cookies.Get("selectedTimeZone");
+                        if(cookie != null) ddlTimeZone.SelectedValue = cookie.Value;
                     }
+                    TimeZoneInfo selectedTimeZone = null;
+                    if (ddlTimeZone.SelectedIndex > -1)
+                    {
+                        string selectedTimeZoneId = ddlTimeZone.SelectedValue;
+                        foreach (var timeZone in TimeZoneInfo.GetSystemTimeZones())
+                        {
+                            string timeZoneId = GetTimeZoneId(timeZone);
+                            if (timeZoneId == selectedTimeZoneId) selectedTimeZone = timeZone;
+                        }
+                    }
+                    if (selectedTimeZone == null) selectedTimeZone = TimeZoneInfo.Local;
+                    ddlTimeZone.SelectedValue = GetTimeZoneId(selectedTimeZone);
+                    Page.Response.AppendCookie(new HttpCookie("selectedTimeZone", GetTimeZoneId(selectedTimeZone)));
+                    litYourTime.Text = TimeZoneInfo.ConvertTimeFromUtc(now, selectedTimeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
+                    litTurnRoll.Text = TimeZoneInfo.ConvertTimeFromUtc(turnRoll, selectedTimeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {
@@ -139,6 +183,12 @@ namespace pitboss_portal
                 }
             }
             return turn;
+        }
+
+        private static string GetTimeZoneId(TimeZoneInfo timeZone)
+        {
+            string timeZoneId = timeZone.Id.Replace(" ", "").Replace(".", "").Replace("+", "plus").Replace("-", "minus");
+            return timeZoneId;
         }
 
         private void ShowPlayerSummary(int turn, List<EventLine> events)
@@ -215,6 +265,11 @@ namespace pitboss_portal
             litNumberDone.Text = players.Count(p => p.HasEndedTurn) + " of " + playerCount;
             litNumberLoggedIn.Text = players.Count(p => p.HasLoggedIn && !p.HasEndedTurn) + " of " + playerCount;
             litNumberLeft.Text = players.Count(p => !p.HasLoggedIn && !p.HasEndedTurn) + " of " + playerCount;
+        }
+
+        protected void ddlTimeZone_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine(ddlTimeZone.SelectedValue);
         }
     }
 }

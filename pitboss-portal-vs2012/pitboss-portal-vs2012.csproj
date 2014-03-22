@@ -57,9 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="civstats.aspx" />
     <Content Include="index.aspx" />
-    <Content Include="styles\civstats.css" />
     <Content Include="styles\styles.css" />
     <Content Include="testdata\event.txt" />
     <Content Include="testdata\players.txt" />
@@ -70,13 +68,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="civstats.aspx.cs">
-      <DependentUpon>civstats.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="civstats.aspx.designer.cs">
-      <DependentUpon>civstats.aspx</DependentUpon>
-    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
