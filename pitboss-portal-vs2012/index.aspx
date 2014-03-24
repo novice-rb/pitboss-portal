@@ -4,13 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>
-        <asp:Literal EnableViewState="false" runat="server" ID="litTitle">Game name</asp:Literal></title>
+    <title>Pitboss Portal</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <link href="styles/styles.css" rel="STYLESHEET" type="text/css">
 </head>
 <body>
     <form id="form1" runat="server">
+        <center>
         <div class="mainContainer">
             <div class="gameInfo">
                 <h1>Game info</h1>
@@ -45,16 +45,18 @@
                 </div>
             <div class="playerInfo">
                 <h1>Player Summary</h1>
-                <div class="whosPlayedSummary">
-                    <div class="numberDone">
-                        <asp:Literal EnableViewState="false" runat="server" ID="litNumberDone"></asp:Literal>
-                        players have played their turn.</div>
-                    <div class="numberLoggedIn">
-                        <asp:Literal EnableViewState="false" runat="server" ID="litNumberLoggedIn"></asp:Literal>
-                        players have logged in but not played.</div>
-                    <div class="numberLeft">
-                        <asp:Literal EnableViewState="false" runat="server" ID="litNumberLeft"></asp:Literal>
-                        players have not logged in this turn.</div>
+                <div class="whosPlayedContainer">
+                    <div class="whosPlayedSummary">
+                        <div class="numberDone">
+                            <asp:Literal EnableViewState="false" runat="server" ID="litNumberDone"></asp:Literal>
+                            players have played their turn.</div>
+                        <div class="numberLoggedIn">
+                            <asp:Literal EnableViewState="false" runat="server" ID="litNumberLoggedIn"></asp:Literal>
+                            players have logged in but not played.</div>
+                        <div class="numberLeft">
+                            <asp:Literal EnableViewState="false" runat="server" ID="litNumberLeft"></asp:Literal>
+                            players have not logged in this turn.</div>
+                    </div>
                 </div>
                 <asp:Literal EnableViewState="false" runat="server" ID="litPlayerSummary"></asp:Literal>
             </div>
@@ -63,6 +65,7 @@
                 <asp:Literal EnableViewState="false" runat="server" ID="litEventLog"></asp:Literal>
             </div>
         </div>
+        </center>
     </form>
 </body>
 </html>

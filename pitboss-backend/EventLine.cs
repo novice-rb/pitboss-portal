@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,10 @@ namespace pitboss_backend
 {
     public class EventLine
     {
-        public EventLine(string eventTime, string playerName, string eventType, string eventTypeDescription, int playerId, int turn)
+        public EventLine(string eventTime, DateTime eventTimeParsed, string playerName, string eventType, string eventTypeDescription, int playerId, int turn)
         {
             this.EventTime = eventTime;
+            this.EventTimeParsed = eventTimeParsed;
             this.PlayerName = playerName;
             this.EventType = eventType;
             this.EventTypeDescription = eventTypeDescription;
@@ -18,13 +20,22 @@ namespace pitboss_backend
             this.Turn = turn;
         }
 
-        public EventLine(string line)
+        public EventLine(string line, TimeZoneInfo timeZone)
         {
             this.RawLine = line;
             try
             {
                 string[] parts = line.Split(new string[] { "---" }, StringSplitOptions.None);
                 this.EventTime = parts[0].Trim();
+                try
+                {
+                    this.EventTimeParsed = DateTime.ParseExact(this.EventTime.Substring(4), "MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
+                    if (timeZone != null) this.EventTimeParsed = TimeZoneInfo.ConvertTimeFromUtc(this.EventTimeParsed, timeZone);
+                }
+                catch
+                {
+                    this.EventTimeParsed = DateTime.MinValue;
+                }
                 this.PlayerName = parts[1].Trim();
                 this.EventType = parts[2].Trim();
                 int score = 0;
@@ -51,7 +62,14 @@ namespace pitboss_backend
         {
             if (ParseException != null) return "<div class=\"event\">Error parsing event line &quot;" + RawLine + "&quot;: " + ParseException.Message + "</div>";
             string eventHtml = "<div class=\"event eventType" + EventType + "\">\n";
-            eventHtml += "<div class=\"eventTime\">" + EventTime + "</div>\n";
+            if (this.EventTimeParsed == DateTime.MinValue)
+            {
+                eventHtml += "<div class=\"eventTime\">" + EventTime + "</div>\n";
+            }
+            else
+            {
+                eventHtml += "<div class=\"eventTime\">" + EventTimeParsed.ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture) +"</div>\n";
+            }
             eventHtml += "<div class=\"eventPlayer\">" + PlayerName + "</div>\n";
             eventHtml += "<div class=\"eventTurn\">Turn " + Turn + "</div>\n";
             eventHtml += "<div class=\"eventType\">" + EventTypeDescription + "</div>\n";
@@ -60,6 +78,7 @@ namespace pitboss_backend
         }
 
         public string RawLine { get; private set; }
+        public DateTime EventTimeParsed { get; private set; }
         public string EventTime { get; private set; }
         public string PlayerName { get; private set; }
         public string EventType { get; private set; }

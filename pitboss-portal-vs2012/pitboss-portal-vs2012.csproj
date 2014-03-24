@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="index.aspx" />
     <Content Include="styles\styles.css" />
     <Content Include="testdata\event.txt" />

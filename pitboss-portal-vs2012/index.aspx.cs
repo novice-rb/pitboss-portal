@@ -38,8 +38,9 @@ namespace pitboss_portal
 
         private void ShowGameInfo()
         {
-            litTitle.Text = GetSetting("GameName", "Pitboss Game");
-            litGameName.Text = litTitle.Text;
+            var gameName = GetSetting("GameName", "Pitboss Game");
+            this.Page.Header.Title = "Pitboss Portal - " + gameName;
+            litGameName.Text = gameName;
             litConnectionAddress.Text = GetSetting("ConnectionAddress", "");
             string modUrl = GetSetting("VersionLink", "");
             string mod = GetSetting("Version", "Beyond the Sword");
@@ -71,7 +72,7 @@ namespace pitboss_portal
             List<EventLine> eventLines = new List<EventLine>();
             foreach (string line in eventInfo)
             {
-                EventLine evt = new EventLine(line);
+                EventLine evt = new EventLine(line, _selectedTimeZone);
                 eventLines.Add(evt);
             }
 
@@ -83,15 +84,15 @@ namespace pitboss_portal
             {
                 if (currentTurn != -1)
                 {
-                    if (evt.Turn > currentTurn) newEvents.Add(new EventLine(evt.EventTime, "", "turnroll", "A new turn has begun. It is now turn " + evt.Turn + ".", -1, evt.Turn));
-                    if (evt.Turn < currentTurn) newEvents.Add(new EventLine(evt.EventTime, "", "reload", "A reload has been detected. It is now turn " + evt.Turn + ".", -1, evt.Turn));
+                    if (evt.Turn > currentTurn) newEvents.Add(new EventLine(evt.EventTime, evt.EventTimeParsed, "", "turnroll", "A new turn has begun. It is now turn " + evt.Turn + ".", -1, evt.Turn));
+                    if (evt.Turn < currentTurn) newEvents.Add(new EventLine(evt.EventTime, evt.EventTimeParsed, "", "reload", "A reload has been detected. It is now turn " + evt.Turn + ".", -1, evt.Turn));
                 }
                 currentTurn = evt.Turn;
                 if (PlayerNames.ContainsKey(evt.PlayerId))
                 {
                     if (PlayerNames[evt.PlayerId] != evt.PlayerName)
                     {
-                        newEvents.Add(new EventLine(evt.EventTime, evt.PlayerName, "namechange", PlayerNames[evt.PlayerId] + " changed name to " + evt.PlayerName, evt.PlayerId, evt.Turn));
+                        newEvents.Add(new EventLine(evt.EventTime, evt.EventTimeParsed, evt.PlayerName, "namechange", PlayerNames[evt.PlayerId] + " changed name to " + evt.PlayerName, evt.PlayerId, evt.Turn));
                         PlayerNames[evt.PlayerId] = evt.PlayerName;
                     }
                 }
@@ -115,6 +116,7 @@ namespace pitboss_portal
             return newEvents;
         }
 
+        private TimeZoneInfo _selectedTimeZone = null;
         private int ShowTimeInfo()
         {
             int turn = -1;
@@ -161,21 +163,20 @@ namespace pitboss_portal
                         var cookie = Page.Request.Cookies.Get("selectedTimeZone");
                         if(cookie != null) ddlTimeZone.SelectedValue = cookie.Value;
                     }
-                    TimeZoneInfo selectedTimeZone = null;
                     if (ddlTimeZone.SelectedIndex > -1)
                     {
                         string selectedTimeZoneId = ddlTimeZone.SelectedValue;
                         foreach (var timeZone in TimeZoneInfo.GetSystemTimeZones())
                         {
                             string timeZoneId = GetTimeZoneId(timeZone);
-                            if (timeZoneId == selectedTimeZoneId) selectedTimeZone = timeZone;
+                            if (timeZoneId == selectedTimeZoneId) _selectedTimeZone = timeZone;
                         }
                     }
-                    if (selectedTimeZone == null) selectedTimeZone = TimeZoneInfo.Local;
-                    ddlTimeZone.SelectedValue = GetTimeZoneId(selectedTimeZone);
-                    Page.Response.AppendCookie(new HttpCookie("selectedTimeZone", GetTimeZoneId(selectedTimeZone)));
-                    litYourTime.Text = TimeZoneInfo.ConvertTimeFromUtc(now, selectedTimeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
-                    litTurnRoll.Text = TimeZoneInfo.ConvertTimeFromUtc(turnRoll, selectedTimeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
+                    if (_selectedTimeZone == null) _selectedTimeZone = TimeZoneInfo.Local;
+                    ddlTimeZone.SelectedValue = GetTimeZoneId(_selectedTimeZone);
+                    Page.Response.AppendCookie(new HttpCookie("selectedTimeZone", GetTimeZoneId(_selectedTimeZone)));
+                    litYourTime.Text = TimeZoneInfo.ConvertTimeFromUtc(now, _selectedTimeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
+                    litTurnRoll.Text = TimeZoneInfo.ConvertTimeFromUtc(turnRoll, _selectedTimeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
                 }
                 catch (Exception ex)
                 {
@@ -251,11 +252,20 @@ namespace pitboss_portal
             {
                 foreach (var evt in turnEvents.Where(evt => evt.PlayerId == pl.PlayerId))
                 {
-                    pl.HasLoggedIn = true;
-                    if (evt.EventType == "connected")
+                    if (evt.EventType == "endturn")
+                    {
+                        pl.HasLoggedIn = true;
+                    }
+                    else if (evt.EventType == "connected")
+                    {
+                        pl.HasLoggedIn = true;
                         pl.IsLoggedIn = true;
+                    }
                     else if (evt.EventType == "disconnected")
+                    {
+                        pl.HasLoggedIn = true;
                         pl.IsLoggedIn = false;
+                    }
                 }
                 scoreHtml += pl.ToHtml();
             }
