@@ -91,14 +91,14 @@ namespace pitboss_emailer
             int lastTurnProcessed = 0;
             if (!string.IsNullOrEmpty(lastEventProcessed))
             {
-                lastTurnProcessed = new EventLine(lastEventProcessed).Turn;
+                lastTurnProcessed = new EventLine(lastEventProcessed, null).Turn;
             }
 
             // Process new lines
             string lastLineProcessed = null;
             foreach (string eventLine in newEvents)
             {
-                EventLine evt = new EventLine(eventLine);
+                EventLine evt = new EventLine(eventLine, null);
                 if (evt.Turn > lastTurnProcessed)
                 {
                     if (!SendTurnRollEmail(evt.Turn)) return lastLineProcessed;
