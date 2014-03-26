@@ -20,7 +20,7 @@ namespace pitboss_backend
             this.Turn = turn;
         }
 
-        public EventLine(string line, TimeZoneInfo timeZone)
+        public EventLine(string line, TimeZoneInfo timeZone, int utcOffset)
         {
             this.RawLine = line;
             try
@@ -30,7 +30,8 @@ namespace pitboss_backend
                 try
                 {
                     this.EventTimeParsed = DateTime.ParseExact(this.EventTime.Substring(4), "MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
-                    if (timeZone != null) this.EventTimeParsed = TimeZoneInfo.ConvertTimeFromUtc(this.EventTimeParsed, timeZone);
+                    this.EventTimeParsed = this.EventTimeParsed.AddHours(0 - utcOffset); // Convert to UTC - events are logged in the pitboss server's local time zone
+                    if (timeZone != null) this.EventTimeParsed = TimeZoneInfo.ConvertTimeFromUtc(this.EventTimeParsed, timeZone); // Converting to user's selected time zone
                 }
                 catch
                 {

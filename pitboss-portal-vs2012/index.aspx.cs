@@ -70,9 +70,10 @@ namespace pitboss_portal
                 litEventLog.Text = "Error reading event.txt: " + ex.Message;
             }
             List<EventLine> eventLines = new List<EventLine>();
+            int utcOffset = int.Parse(GetSetting("SystemTimeUTCOffset", "1"));
             foreach (string line in eventInfo)
             {
-                EventLine evt = new EventLine(line, _selectedTimeZone);
+                EventLine evt = new EventLine(line, _selectedTimeZone, utcOffset);
                 eventLines.Add(evt);
             }
 
@@ -174,7 +175,9 @@ namespace pitboss_portal
                     }
                     if (_selectedTimeZone == null) _selectedTimeZone = TimeZoneInfo.Local;
                     ddlTimeZone.SelectedValue = GetTimeZoneId(_selectedTimeZone);
-                    Page.Response.AppendCookie(new HttpCookie("selectedTimeZone", GetTimeZoneId(_selectedTimeZone)));
+                    HttpCookie timeZoneCookie = new HttpCookie("selectedTimeZone", GetTimeZoneId(_selectedTimeZone));
+                    timeZoneCookie.Expires = DateTime.Now.AddYears(10);
+                    Page.Response.Cookies.Add(timeZoneCookie);
                     litYourTime.Text = TimeZoneInfo.ConvertTimeFromUtc(now, _selectedTimeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
                     litTurnRoll.Text = TimeZoneInfo.ConvertTimeFromUtc(turnRoll, _selectedTimeZone).ToString("ddd MMM dd HH:mm:ss yyyy", CultureInfo.InvariantCulture);
                 }
