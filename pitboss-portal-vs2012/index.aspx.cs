@@ -248,7 +248,8 @@ namespace pitboss_portal
             {
                 scoreHtml = "Error parsing score.txt or players.txt: " + ex.Message;
             }
-            
+            players.Sort(new Comparison<PlayerInfo>((a, b) => { return b.Score - a.Score; }));
+
             if (turn < 0) turn = events.Max(e => e.Turn);
             var turnEvents = events.Where(e => e.Turn == turn).Reverse();
             foreach (var pl in players)
