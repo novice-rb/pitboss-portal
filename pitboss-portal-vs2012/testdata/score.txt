@@ -1,7 +1,34 @@
-* --- plako --- 36 --- 0
-  --- Ragnar --- 11 --- 1
-  --- Joao II --- 11 --- 2
-  --- Wang Kon --- 11 --- 3
-  --- Boudica --- 11 --- 4
-  --- De Gaulle --- 11 --- 5
-  --- Cyrus --- 11 --- 6
+* --- Augrufftus --- 217 --- 0
+* --- Azza --- 188 --- 1
+* --- Fintourist --- 300 --- 2
+* --- Novice --- 252 --- 3
+* --- Parkin (Qgqqqqq) --- 176 --- 4
+  --- Jowy --- 96 --- 5
+* --- Parkin (Barry) --- 101 --- 6
+  --- pindicator --- 261 --- 7
+  --- Cyneheard --- 218 --- 8
+* --- Dhal --- 180 --- 9
+* --- dtay --- 353 --- 10
+* --- plako --- 269 --- 11
+  --- spacetyrantxenu --- 261 --- 12
+  --- Oxyphenbutazone --- 286 --- 13
+  --- Zanth --- 238 --- 14
+* --- Furungy --- 201 --- 15
+* --- Parkin (lurker) --- 95 --- 16
+  --- wetbandit --- 218 --- 17
+* --- dazedroyalty --- 237 --- 18
+  --- MYKI --- 215 --- 19
+* --- HitAnyKey --- 197 --- 20
+* --- Nakor --- 182 --- 21
+* --- WilliamLP --- 241 --- 22
+* --- The Black Sword --- 272 --- 23
+* --- Yuri --- 231 --- 24
+* --- German Jojo --- 277 --- 25
+  --- Ataturk --- 233 --- 26
+* --- Parkin (Molach) --- 199 --- 27
+  --- AT --- 185 --- 28
+  --- BGN --- 347 --- 29
+  --- Mardoc --- 226 --- 30
+* --- Caledorn --- 207 --- 31
+  --- Whosit --- 181 --- 32
+* --- Cheater Hater --- 192 --- 33
