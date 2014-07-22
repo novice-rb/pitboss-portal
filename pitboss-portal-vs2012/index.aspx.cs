@@ -101,6 +101,11 @@ namespace pitboss_portal
                 {
                     PlayerNames[evt.PlayerId] = evt.PlayerName;
                 }
+                if (evt.EventType == "scorechange")
+                {
+                    var lastScoreEvent = newEvents.LastOrDefault(e => e.EventType == "scorechange" && e.PlayerId == evt.PlayerId);
+                    if (lastScoreEvent != null) evt.LastScore = lastScoreEvent.Score;
+                }
                 newEvents.Add(evt);
             }
             newEvents.Reverse();

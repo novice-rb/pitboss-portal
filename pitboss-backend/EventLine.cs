@@ -44,6 +44,7 @@ namespace pitboss_backend
                 {
                     this.EventTypeDescription = "Score changed to " + score;
                     this.EventType = "scorechange";
+                    this.Score = score;
                 }
                 else
                 {
@@ -86,6 +87,20 @@ namespace pitboss_backend
         public string EventTypeDescription { get; private set; }
         public int PlayerId { get; private set; }
         public int Turn { get; private set; }
+        public int Score { get; private set; }
+        private int _LastScore = 0;
+        public int LastScore
+        {
+            get { return _LastScore; }
+            set
+            {
+                if (value < Score)
+                    EventTypeDescription = "Score increased from " + value + " to " + Score;
+                else if (value > Score)
+                    EventTypeDescription = "Score decreased from " + value + " to " + Score;
+                _LastScore = value;
+            }
+        }
         public Exception ParseException { get; private set; }
     }
 
