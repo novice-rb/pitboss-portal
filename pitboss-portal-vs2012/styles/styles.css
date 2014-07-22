@@ -99,10 +99,6 @@ h1 {
 .onlineStatus {
     width: 100px;
 }
-.eventTurn {
-    width: 60px;
-    text-align: right;
-}
 
 .timeInfo {
     clear: both;
@@ -144,7 +140,7 @@ h1 {
     float: right;
 }
 .eventTurn {
-    width: 60px;
+    width: 70px;
     text-align: right;
 }
 .eventTypeturnroll, .eventTypereload {
